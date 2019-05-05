@@ -1,0 +1,52 @@
+\documentclass[tikz]{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\renewcommand*{\familydefault}{\sfdefault}
+
+\newcounter{row}
+\newcounter{col}
+
+\newcommand{\firstrow}{\setcounter{row}{16}\setcounter{col}{0}}
+\newcommand{\nextrow}{\addtocounter{row}{-1}\setcounter{col}{0}}
+\newcommand{\nextcell}{\addtocounter{col}{1}}
+
+\newcommand{\pre}[1]{
+	\node[anchor=south] at (\value{col},\value{row}) {\LARGE \textbf{#1}};
+	\nextcell	
+}
+
+\newcommand{\sol}[1]{
+	\node[anchor=south] at (\value{col},\value{row}) {\LARGE \color{red} #1};
+	\nextcell	
+}
+
+\def\p#1{\pre{#1}}
+
+\def\s#1{\sol{#1}}
+
+\def\nr{\nextrow}
+
+
+\newenvironment{hexadoku}{%
+	\clip (-0.25,-0.25) rectangle (16.25,16.25);%
+	\fill [fill=none] (-1,-1) rectangle (17,17);%
+	\draw[step=1.0,black,thin] (0,0) grid (16,16);%
+	\draw[step=4,black,line width=2pt,line cap=round] (0,0) grid (16,16);%
+	\begin{scope}[shift={(0.5,-0.85)}]%
+}{%
+	\end{scope}%
+}
+
+\begin{document}
+
+\begin{tikzpicture}
+\begin{hexadoku}
+
+<placeholder>
+
+\end{hexadoku}
+\end{tikzpicture}%
+
+\end{document}
